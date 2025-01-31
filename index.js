@@ -37,6 +37,17 @@ app.delete('/remove/:id',async(req,res)=>{
         res.send(error);
     }
 });
+
+// api to update existing data
+app.put("/edit/:id",async (req,res)=>{
+    try {
+        var data = await prodModel.findByIdAndUpdate(req.params.id,req.body);
+        res.send("updated successfully");
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 // port 
 app.listen(port,(req,res)=>{
     console.log(`Server is connected in ${port}`)
